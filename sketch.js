@@ -4,6 +4,12 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
+var engine;
+
+var world;
+
+var throwButton;
+
 function preload()
 {
 	
@@ -17,7 +23,7 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	ball = Bodies.circle(width/2 , 200 , 5 , {restitution:0.5, isStatic:true});
+
 
 	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255)
@@ -37,7 +43,6 @@ function setup() {
 
 	Engine.run(engine);
 
-	keyPressed();
   
 }
 
@@ -45,15 +50,15 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
-  
+
+  if(mousePressedOver(ball)){
+	  ball.velocityY = 3;
+  }
+
   drawSprites();
  
 }
 
-function keyPressed(){
-	if(keyCode === UP_ARROW){
-		ball.velocityY = 3;
-	}
-}
+
 
 
